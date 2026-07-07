@@ -1,20 +1,23 @@
+// server.js
+import 'dotenv/config'; // Modern clean environment initialization
+import express from 'express';
+import cors from 'cors';
 
+import connectDB from './config/db.js';
+import { connectRabbitMQ } from './config/cloudamqp.js';
+import authRoutes from './routes/authRoutes.js'; // Modern ES Module Router import
 
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import "./config/upstash.js"; // Executes the file
-import { connectRabbitMQ } from "./config/cloudamqp.js";
+const app = express();
 
-dotenv.config();
+// Global System Parsing Hook Middlewares
+app.use(cors());
+app.use(express.json());
 
-async function testPhaseOne() {
-  console.log('--- PixelForge Async: Booting Infrastructure Diagnostics ---');
-  
-  // Fire sequential database and message broker handshakes
-  await connectDB();
-  await connectRabbitMQ();
-  
-  console.log('🏁 Phase 1 Success: All cloud conduits are operational!');
-}
+// Boot underlying infrastructure clusters concurrently
+connectDB();
+connectRabbitMQ();
 
-testPhaseOne();
+app.use('/api/auth', authRoutes); // Isolated authentication routing module injection
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`PixelForge Web Engine rendering natively via ES Modules on port: ${PORT}`));
