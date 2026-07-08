@@ -14,9 +14,9 @@ const redis = new Redis({
 (async () => {
   try {
     await redis.ping();
-    console.log('🚀 Upstash Serverless Redis Connection Verified.');
+    console.log('Upstash Serverless Redis Connection Verified.');
   } catch (error) {
-    console.error(`❌ Upstash Redis Authorization Failure: ${error.message}`);
+    console.error(`Upstash Redis Authorization Failure: ${error.message}`);
   }
 })();
 

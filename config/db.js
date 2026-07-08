@@ -11,9 +11,9 @@ const connectDB = async () => {
       maxPoolSize: 10,                 // Keeps database handles constrained safely
       serverSelectionTimeoutMS: 5000,  // Fail fast rather than locking requests if down
     });
-    console.log(`🚀 Database Layer Online: Connected to host -> ${conn.connection.host}`);
+    console.log(`Database Layer Online: Connected to host -> ${conn.connection.host}`);
   } catch (error) {
-    console.error(`❌ Core Database Connection Error: ${error.message}`);
+    console.error(`Core Database Connection Error: ${error.message}`);
     process.exit(1);                   // Terminate application execution on connection failure
   }
 };

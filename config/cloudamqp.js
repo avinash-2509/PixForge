@@ -21,11 +21,11 @@ export const connectRabbitMQ = async () => {
       durable: true,
     });
 
-    console.log("🚀 CloudAMQP Broker Connected & Queue Ready.");
+    console.log("CloudAMQP Broker Connected & Queue Ready.");
 
     return amqpChannel;
   } catch (error) {
-    console.error(`❌ CloudAMQP Connection Failed: ${error.message}`);
+    console.error(`CloudAMQP Connection Failed: ${error.message}`);
     throw error;
   }
 };

@@ -4,6 +4,8 @@ import express from 'express';
 import cors from 'cors';
 
 import connectDB from './config/db.js';
+import imageRoutes from './routes/imageRoutes.js';
+
 import { connectRabbitMQ } from './config/cloudamqp.js';
 import authRoutes from './routes/authRoutes.js'; // Modern ES Module Router import
 
@@ -17,7 +19,8 @@ app.use(express.json());
 connectDB();
 connectRabbitMQ();
 
-app.use('/api/auth', authRoutes); // Isolated authentication routing module injection
+app.use('/api/auth', authRoutes);
+app.use('/api/images', imageRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`PixelForge Web Engine rendering natively via ES Modules on port: ${PORT}`));
