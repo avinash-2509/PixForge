@@ -1,4 +1,4 @@
-# ⚡ PixelForge Async
+# PixelForge Async
 
 PixelForge Async is a high-performance, production-ready, asynchronous image-processing web application. By decoupling high-throughput I/O ingestion from heavy CPU-bound image transformations, PixelForge achieves predictable memory usage, flat CPU utilization, and extreme resiliency under load.
 
