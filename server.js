@@ -17,7 +17,7 @@ app.use(express.json());
 
 // Boot underlying infrastructure clusters concurrently
 connectDB();
-connectRabbitMQ();
+connectRabbitMQ().catch(err => console.error('RabbitMQ boot connection failed:', err.message));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/images', imageRoutes);
