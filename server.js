@@ -22,5 +22,8 @@ connectRabbitMQ();
 app.use('/api/auth', authRoutes);
 app.use('/api/images', imageRoutes);
 
+// Import worker.js to start RabbitMQ consumer listener in the unified process
+import './worker.js';
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`PixelForge Web Engine rendering natively via ES Modules on port: ${PORT}`));
